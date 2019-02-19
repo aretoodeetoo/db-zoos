@@ -10,12 +10,16 @@ const knexConfig = {
   useNullAsDefault: true,
 }
 
+const db = knex(knexConfig);
+
 const server = express();
 
 server.use(express.json());
 server.use(helmet());
 
 // endpoints here
+// GET Zoos
+server.get('/api/zoos');
 
 const port = 3300;
 server.listen(port, function() {
