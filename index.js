@@ -18,12 +18,25 @@ server.use(express.json());
 server.use(helmet());
 
 // endpoints here
-// GET Zoos
+
+// GET All Zoos
 server.get('/api/zoos', async (req, res) => {
   try{
     const zoos = await db('zoos');
     res.status(200).json(roles);
   } catch(error){
+    res.status(500).json(error);
+  }
+});
+
+// GET Zoo by ID
+server.get('/api/zoos/:id', async (req, res) => {
+  try {
+    const zoo = await db('zoos')
+    .where({ id: req.params.id })
+    .first();
+  res.status(200).json(zoo);
+  } catch(error) {
     res.status(500).json(error);
   }
 });
