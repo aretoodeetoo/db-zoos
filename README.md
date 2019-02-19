@@ -55,6 +55,6 @@ When the client makes a `DELETE` request to this endpoint, the _zoo_ that has th
 
 When the client makes a `PUT` request to this endpoint passing an object with the changes, the _zoo_ with the provided `id` should be updated with the new information.
 
-## Stretch Problem
+## Stretch Problem x
 
 Add a new _bears_ table to the database and add endpoints to perform CRUD operations on it. Each bear should have an `id` and `name` property similar to the _zoos_ table. x 

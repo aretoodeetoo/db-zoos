@@ -72,8 +72,8 @@ server.post('/api/zoos', async (req, res) => {
   try{
     const [id] = await db('zoos').insert(req.body);
 
-    const zoo = await db('zoos').
-      where({ id })
+    const zoo = await db('zoos')
+      .where({ id })
       .first();
     res.status(201).json(zoo);
 
