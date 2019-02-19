@@ -71,6 +71,22 @@ server.post('/api/zoos', async (req, res) => {
   }
 })
 
+// Create a Bear... or should I say, Build a Bear
+server.post('/api/bears', async (req, res) => {
+  try{
+    const [id] = await db('bears').insert(req.body);
+
+    const bear = await db('bears').
+      where({ id })
+      .first();
+    res.status(201).json(bear);
+
+  } catch(error) {
+    const message = errors[errors.errno] || 'We ran into an error adding this to our database';
+    res.status(500).json({ message, error });
+  }
+})
+
 // Update Zoo by ID
 server.put('/api/zoos/:id', async (req, res) => {
   try {
