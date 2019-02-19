@@ -23,7 +23,7 @@ server.use(helmet());
 server.get('/api/zoos', async (req, res) => {
   try{
     const zoos = await db('zoos');
-    res.status(200).json(roles);
+    res.status(200).json(zoos);
   } catch(error){
     res.status(500).json(error);
   }
@@ -40,6 +40,26 @@ server.get('/api/zoos/:id', async (req, res) => {
     res.status(500).json(error);
   }
 });
+
+const errors = {
+  '19': 'Another zoo with that value exists',
+}
+
+// Create a Zoo
+server.post('/api/zoos', async (req, res) => {
+  try{
+    const [id] = await db('zoos').insert(req.body);
+
+    const zoo = await db('zoos').
+      where({ id })
+      .first();
+    res.status(201).json(zoo);
+
+  } catch(error) {
+    const message = errors[errors.errno] || 'We ran into an error adding this to our database';
+    res.status(500).json({ message, error });
+  }
+})
 
 const port = 3300;
 server.listen(port, function() {
