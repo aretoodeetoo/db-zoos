@@ -155,6 +155,22 @@ server.delete('/api/zoos/:id', async (req, res) => {
   }
 });
 
+// Delete a Bear
+server.delete('/api/bears/:id', async (req, res) => {
+  try{
+    const count = await db('bears')
+      .where({ id: req.params.id })
+      .del();
+    if (count > 0){
+      res.status(204).end();
+    } else {
+      res.status(404).json({ message: 'Bear not found to delete'});
+    }
+  } catch(error){
+    res.status(500).json(error);
+  }
+});
+
 const port = 3300;
 server.listen(port, function() {
   console.log(`\n=== Web API Listening on http://localhost:${port} ===\n`);
