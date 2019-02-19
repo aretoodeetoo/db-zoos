@@ -55,6 +55,18 @@ server.get('/api/bears', async (req, res) => {
   }
 });
 
+// Get Bears by ID
+server.get('/api/bears/:id', async (req, res) => {
+  try {
+    const bear = await db('bears')
+    .where({ id: req.params.id })
+    .first();
+  res.status(200).json(bear);
+  } catch(error) {
+    res.status(500).json(error);
+  }
+});
+
 // Create a Zoo
 server.post('/api/zoos', async (req, res) => {
   try{
@@ -101,6 +113,26 @@ server.put('/api/zoos/:id', async (req, res) => {
         res.status(200).json(zoo);
       } else {
         res.status(404).json({ message: 'Zoo not found to update '});
+      }
+  } catch(error){
+    res.status(500).json(error);
+  }
+})
+
+// Update Bear by ID
+server.put('/api/bears/:id', async (req, res) => {
+  try {
+    const count = await db('bears')
+      .where({ id: req.params.id })
+      .update(req.body);
+    
+      if (count > 0){
+        const bear = await db('bears')
+          .where({ id: req.params.id })
+          .first();
+        res.status(200).json(bear);
+      } else {
+        res.status(404).json({ message: 'Bear not found to update '});
       }
   } catch(error){
     res.status(500).json(error);
