@@ -45,6 +45,16 @@ const errors = {
   '19': 'Another zoo with that value exists',
 }
 
+// Get Bears
+server.get('/api/bears', async (req, res) => {
+  try{
+    const bears = await db('bears');
+    res.status(200).json(bears);
+  } catch(error){
+    res.status(500).json(error);
+  }
+});
+
 // Create a Zoo
 server.post('/api/zoos', async (req, res) => {
   try{

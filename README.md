@@ -47,7 +47,7 @@ When the client makes a `GET` request to this endpoint, return a list of all the
 
 When the client makes a `GET` request to `/api/zoos/:id`, find the _zoo_ associated with the given `id`. Remember to handle errors and send the correct status code.
 
-### DELETE /api/zoos/:id 
+### DELETE /api/zoos/:id  x
 
 When the client makes a `DELETE` request to this endpoint, the _zoo_ that has the provided `id` should be removed from the database.
 
