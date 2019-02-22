@@ -31,7 +31,7 @@ The included database has a _zoos_ table with the following schema:
 - id: integer, primary key, autoincrements.
 - name: text, required, unique.
 
-### `POST /api/zoos`
+### `POST /api/zoos` x 
 
 When the client makes a `POST` request to this endpoint, a new _zoo_ should be created in the _zoos_ table.
 
@@ -39,22 +39,22 @@ Ensure the client passes a `name` property in the request body. If there's an er
 
 Return the `id` of the inserted zoo and a 201 status code.
 
-### `GET /api/zoos`
+### `GET /api/zoos` x
 
 When the client makes a `GET` request to this endpoint, return a list of all the _zoos_ in the database. Remember to handle any errors and return the correct status code.
 
-### `GET /api/zoos/:id`
+### `GET /api/zoos/:id` x
 
 When the client makes a `GET` request to `/api/zoos/:id`, find the _zoo_ associated with the given `id`. Remember to handle errors and send the correct status code.
 
-### DELETE /api/zoos/:id
+### DELETE /api/zoos/:id  x
 
 When the client makes a `DELETE` request to this endpoint, the _zoo_ that has the provided `id` should be removed from the database.
 
-### PUT /api/zoos/:id
+### PUT /api/zoos/:id x
 
 When the client makes a `PUT` request to this endpoint passing an object with the changes, the _zoo_ with the provided `id` should be updated with the new information.
 
-## Stretch Problem
+## Stretch Problem x
 
-Add a new _bears_ table to the database and add endpoints to perform CRUD operations on it. Each bear should have an `id` and `name` property similar to the _zoos_ table.
+Add a new _bears_ table to the database and add endpoints to perform CRUD operations on it. Each bear should have an `id` and `name` property similar to the _zoos_ table. x 
